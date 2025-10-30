@@ -58,11 +58,7 @@ export function Footer() {
                   Depoimentos
                 </a>
               </li>
-              <li>
-                <a href="#" className="hover:text-accent transition-colors">
-                  Blog
-                </a>
-              </li>
+             
             </ul>
           </div>
 
@@ -71,30 +67,33 @@ export function Footer() {
             <ul className="space-y-3 text-muted-foreground">
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-accent" />
-                <a href="mailto:contato@codeliumcompany.com" className="hover:text-accent transition-colors">
-                  contato@codeliumcompany.com
+                <a href="mailto:codeliumcompany@gmail.com" className="hover:text-accent transition-colors">
+                  codeliumcompany@gmail.com
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-accent" />
-                <a href="tel:+5511999999999" className="hover:text-accent transition-colors">
-                  (11) 99999-9999
+                <a href="tel:+5521967763070" className="hover:text-accent transition-colors">
+                  +55 21 96776-3070
+                </a>
+                
+                  <Phone className="h-4 w-4 text-accent" />
+                <a href="tel:+5561999438854" className="hover:text-accent transition-colors">
+                  +55 61 999438854
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-accent" />
-                <span>São Paulo, SP</span>
+                <span>Brasil</span>
               </li>
             </ul>
 
             <div className="flex gap-4 mt-6">
-              <a href="#" className="text-muted-foreground hover:text-accent transition-colors" aria-label="Facebook">
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-accent transition-colors" aria-label="Instagram">
+            
+              <a href="https://www.instagram.com/codeliumcompany/" className="text-muted-foreground hover:text-accent transition-colors" aria-label="Instagram">
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-accent transition-colors" aria-label="LinkedIn">
+              <a href="linkedin.com/company/codeliumcompany" className="text-muted-foreground hover:text-accent transition-colors" aria-label="LinkedIn">
                 <Linkedin className="h-5 w-5" />
               </a>
             </div>
