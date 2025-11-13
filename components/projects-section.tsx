@@ -40,6 +40,12 @@ const projects = [
     image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/study-mq4hG7uRUyz4XELq5Mn04xLWY4L6yP.jpeg",
     category: "Plataforma",
   },
+    {
+    title: "sistema de contagem de fluxo de veiculos",
+    description: "IA responsável pelo controle do fluxo de veículos que passam por determinado local.",
+    image: "public/sistema.jpeg",
+    category: "Plataforma",
+  },
 ]
 
 export function ProjectsSection() {
