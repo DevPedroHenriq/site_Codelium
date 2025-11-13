@@ -41,7 +41,7 @@ const projects = [
     category: "Plataforma",
   },
     {
-    title: "sistema de contagem de fluxo de veiculos",
+    title: "Sistema de Contagem de Fluxo de Veiculos",
     description: "IA responsável pelo controle do fluxo de veículos que passam por determinado local.",
     image: "/sistema.jpeg",
     category: "Plataforma",
