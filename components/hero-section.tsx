@@ -67,7 +67,7 @@ export function HeroSection() {
           <div className="relative">
             <div className="aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center">
               <img
-                src="/modern-technology-workspace-with-computers-and-cod.jpg"
+                src="/esc_code.jpeg"
                 alt="Workspace de tecnologia"
                 className="w-full h-full object-cover"
               />
