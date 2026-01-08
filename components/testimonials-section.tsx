@@ -4,14 +4,31 @@ import { useEffect, useRef } from "react"
 import { TestimonialCard } from "@/components/testimonial-card"
 
 const testimonials = [
-   {
-    name: "Mercotextil",
-    company: "Mercotextil",
-    role: "",
+  {
+    name: "Carlos Silva",
+    company: "GNV Express",
+    role: "Diretor",
     content:
-      "Excelente trabalho! ",
+      "Excelente trabalho! O site ficou moderno e profissional. Nossos clientes adoraram a facilidade de agendamento online.",
     rating: 5,
-    avatar: "",
+    avatar: "/professional-man-portrait.png",
+  },
+  {
+    name: "Ana Paula Costa",
+    company: "Cadarços Premium",
+    role: "Proprietária",
+    content:
+      "O sistema de gestão transformou nossa empresa. Agora temos controle total do estoque e as vendas aumentaram 40%.",
+    rating: 5,
+    avatar: "/professional-woman-portrait.png",
+  },
+  {
+    name: "Roberto Mendes",
+    company: "Barbearia Estilo",
+    role: "Gerente",
+    content: "Sistema de agendamento perfeito! Reduziu faltas em 60% e melhorou muito a organização da barbearia.",
+    rating: 5,
+    avatar: "/barber-professional-portrait.jpg",
   },
 ]
 

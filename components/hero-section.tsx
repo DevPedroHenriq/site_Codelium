@@ -27,7 +27,7 @@ export function HeroSection() {
   }, [])
 
   const handleWhatsAppClick = () => {
-    const phoneNumber = "+5522999067522" // Altere para seu número
+    const phoneNumber = "+5521967763070" // Altere para seu número
     const message = "Olá! Gostaria de começar um projeto."
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
     window.open(url, "_blank")
@@ -67,7 +67,7 @@ export function HeroSection() {
           <div className="relative">
             <div className="aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center">
               <img
-                src="/esc_code.jpeg"
+                src="/modern-technology-workspace-with-computers-and-cod.jpg"
                 alt="Workspace de tecnologia"
                 className="w-full h-full object-cover"
               />

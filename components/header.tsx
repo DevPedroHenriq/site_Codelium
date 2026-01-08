@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { MessageCircle } from "lucide-react"
+import Image from "next/image"
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
@@ -23,7 +24,7 @@ export function Header() {
   }
 
   const handleWhatsAppClick = () => {
-    const phoneNumber = "+5522999067522"  // Altere para seu número
+    const phoneNumber = "+5521967763070"
     const message = "Olá! Gostaria de saber mais sobre os serviços."
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
     window.open(url, "_blank")
@@ -37,8 +38,11 @@ export function Header() {
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <div className="text-2xl font-bold">
-            Codelium<span className="text-accent">Company</span>
+          <div className="flex items-center gap-3">
+            <Image src="/images/codelium-logo.jpeg" alt="Codelium Company" width={50} height={50} className="rounded" />
+            <div className="text-2xl font-bold">
+              Codelium<span className="text-accent">Company</span>
+            </div>
           </div>
 
           <nav className="hidden md:flex items-center gap-8">
@@ -61,10 +65,16 @@ export function Header() {
               Projetos
             </button>
             <button
-              onClick={() => scrollToSection("avaliacoes")}
+              onClick={() => scrollToSection("clientes")}
               className="text-foreground hover:text-accent transition-colors"
             >
-              Avaliações
+              Clientes
+            </button>
+            <button
+              onClick={() => scrollToSection("contato")}
+              className="text-foreground hover:text-accent transition-colors"
+            >
+              Contato
             </button>
           </nav>
 
