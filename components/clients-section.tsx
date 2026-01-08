@@ -44,6 +44,8 @@ export function ClientsSection() {
     return () => observer.disconnect()
   }, [])
 
+  const duplicatedLogos = [...clientLogos, ...clientLogos]
+
   return (
     <section id="clientes" ref={sectionRef} className="py-24 bg-background">
       <div className="container mx-auto px-4">
@@ -52,23 +54,24 @@ export function ClientsSection() {
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">Empresas que confiaram em nosso trabalho</p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
-          {clientLogos.map((client, index) => (
-            <div
-              key={index}
-              className="flex items-center justify-center p-6 bg-card rounded-lg border border-border hover:border-accent transition-colors"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <div className="relative w-full h-32">
-                <Image
-                  src={client.logo || "/placeholder.svg"}
-                  alt={client.name}
-                  fill
-                  className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
-                />
+        <div className="relative overflow-hidden">
+          <div className="flex gap-8 animate-scroll">
+            {duplicatedLogos.map((client, index) => (
+              <div
+                key={index}
+                className="flex-shrink-0 w-64 h-40 flex items-center justify-center p-6 bg-card rounded-lg border border-border"
+              >
+                <div className="relative w-full h-full">
+                  <Image
+                    src={client.logo || "/placeholder.svg"}
+                    alt={client.name}
+                    fill
+                    className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                  />
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

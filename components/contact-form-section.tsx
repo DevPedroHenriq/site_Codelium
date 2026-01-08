@@ -61,8 +61,10 @@ export function ContactFormSection() {
         body: JSON.stringify(formData),
       })
 
+      const result = await response.json()
+
       if (response.ok) {
-        alert("Mensagem enviada com sucesso!")
+        alert("Mensagem enviada com sucesso! Entraremos em contato em breve.")
         setFormData({
           nome: "",
           email: "",
@@ -73,18 +75,18 @@ export function ContactFormSection() {
           aceitaTermos: false,
         })
       } else {
-        alert("Erro ao enviar mensagem. Tente novamente.")
+        alert(result.message || "Erro ao enviar mensagem. Tente novamente.")
       }
     } catch (error) {
       console.error("Erro:", error)
-      alert("Erro ao enviar mensagem. Tente novamente.")
+      alert("Erro ao enviar mensagem. Por favor, tente novamente ou entre em contato pelo WhatsApp.")
     } finally {
       setIsSubmitting(false)
     }
   }
 
   return (
-    <section id="contato" ref={sectionRef} className="py-24 bg-muted/30">
+    <section id="contato" ref={sectionRef} className="py-24 bg-card/50">
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-12">
@@ -92,7 +94,7 @@ export function ContactFormSection() {
             <p className="text-xl text-muted-foreground">Preencha o formulário e entraremos em contato</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6 bg-card p-8 rounded-lg border border-border">
+          <form onSubmit={handleSubmit} className="space-y-6 bg-background p-8 rounded-lg border border-border">
             <div>
               <Label htmlFor="nome">Nome</Label>
               <Input
@@ -176,7 +178,7 @@ export function ContactFormSection() {
               </Label>
             </div>
 
-            <Button type="submit" className="w-full" disabled={isSubmitting}>
+            <Button type="submit" className="w-full bg-accent hover:bg-accent/90" disabled={isSubmitting}>
               <Send className="mr-2 h-4 w-4" />
               {isSubmitting ? "Enviando..." : "Enviar Mensagem"}
             </Button>
