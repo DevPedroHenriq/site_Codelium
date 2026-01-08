@@ -47,11 +47,16 @@ export function ClientsSection() {
   const duplicatedLogos = [...clientLogos, ...clientLogos]
 
   return (
-    <section id="clientes" ref={sectionRef} className="py-24 bg-background">
-      <div className="container mx-auto px-4">
+    <section id="clientes" ref={sectionRef} className="relative py-24 bg-[#2341e1] overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute top-10 left-20 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 right-10 w-80 h-80 bg-black/20 rounded-full blur-3xl" />
+      <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-white/5 rotate-45 rounded-3xl" />
+
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Nossos Clientes</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">Empresas que confiaram em nosso trabalho</p>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">Nossos Clientes</h2>
+          <p className="text-xl text-white/80 max-w-2xl mx-auto">Empresas que confiaram em nosso trabalho</p>
         </div>
 
         <div className="relative overflow-hidden">
@@ -59,7 +64,7 @@ export function ClientsSection() {
             {duplicatedLogos.map((client, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 w-64 h-40 flex items-center justify-center p-6 bg-card rounded-lg border border-border"
+                className="flex-shrink-0 w-64 h-40 flex items-center justify-center p-6 bg-white rounded-lg border border-white/20"
               >
                 <div className="relative w-full h-full">
                   <Image

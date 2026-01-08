@@ -41,39 +41,53 @@ export function HeroSection() {
   }
 
   return (
-    <section id="inicio" ref={sectionRef} className="min-h-screen flex items-center pt-20">
-      <div className="container mx-auto px-4">
+    <section
+      id="inicio"
+      ref={sectionRef}
+      className="relative min-h-screen flex items-center pt-20 bg-[#2341e1] overflow-hidden"
+    >
+      {/* Decorative background elements */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 left-0 w-80 h-80 bg-black/20 rounded-full blur-3xl" />
+      <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-white/10 rotate-45 rounded-3xl" />
+
+      <div className="container mx-auto px-4 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
-            <h1 className="text-5xl md:text-6xl font-bold leading-tight text-balance">
-              Transformamos suas ideias em <span className="text-accent">soluções digitais</span>
+            <h1 className="text-5xl md:text-6xl font-bold leading-tight text-balance text-white">
+              Transformamos suas ideias em <span className="text-white/90">soluções digitais</span>
             </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
+            <p className="text-xl text-white/80 leading-relaxed">
               Somos uma empresa de tecnologia especializada em criar sites, sistemas e automações que impulsionam o
               crescimento do seu negócio. Com expertise em desenvolvimento web e automação de processos, entregamos
               soluções sob medida para cada cliente.
             </p>
             <div className="flex gap-4">
-              <Button onClick={handleWhatsAppClick} size="lg" className="bg-accent hover:bg-accent/90">
+              <Button onClick={handleWhatsAppClick} size="lg" className="bg-white text-[#2341e1] hover:bg-white/90">
                 Começar Projeto
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button onClick={handlePortfolioClick} size="lg" variant="outline">
+              <Button
+                onClick={handlePortfolioClick}
+                size="lg"
+                variant="outline"
+                className="border-white text-white hover:bg-white/10 bg-transparent"
+              >
                 Ver Portfólio
               </Button>
             </div>
           </div>
 
           <div className="relative">
-            <div className="aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center">
+            <div className="aspect-square rounded-2xl overflow-hidden bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20">
               <img
                 src="/modern-technology-workspace-with-computers-and-cod.jpg"
                 alt="Workspace de tecnologia"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-accent/10 rounded-full blur-3xl" />
-            <div className="absolute -top-6 -left-6 w-32 h-32 bg-accent/10 rounded-full blur-3xl" />
+            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-white/20 rounded-full blur-3xl" />
+            <div className="absolute -top-6 -left-6 w-32 h-32 bg-black/30 rounded-full blur-3xl" />
           </div>
         </div>
       </div>

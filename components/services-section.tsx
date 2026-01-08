@@ -48,11 +48,16 @@ export function ServicesSection() {
   }, [])
 
   return (
-    <section id="servicos" ref={sectionRef} className="py-24 bg-card/50">
-      <div className="container mx-auto px-4">
+    <section id="servicos" ref={sectionRef} className="relative py-24 bg-white overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute top-20 right-10 w-72 h-72 bg-[#2341e1]/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-10 left-10 w-96 h-96 bg-black/5 rounded-full blur-3xl" />
+      <div className="absolute top-1/3 right-1/4 w-48 h-48 bg-[#2341e1]/10 rotate-12 rounded-3xl" />
+
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">O Que Fazemos</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-black">O Que Fazemos</h2>
+          <p className="text-xl text-black/70 max-w-2xl mx-auto">
             Oferecemos soluções completas em tecnologia para transformar e otimizar seu negócio
           </p>
         </div>

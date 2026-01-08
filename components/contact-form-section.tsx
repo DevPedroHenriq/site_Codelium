@@ -86,15 +86,23 @@ export function ContactFormSection() {
   }
 
   return (
-    <section id="contato" ref={sectionRef} className="py-24 bg-card/50">
-      <div className="container mx-auto px-4">
+    <section id="contato" ref={sectionRef} className="relative py-24 bg-white overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-black/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#2341e1]/10 rounded-full blur-3xl" />
+      <div className="absolute top-1/3 left-1/3 w-64 h-64 bg-[#2341e1]/5 -rotate-45 rounded-3xl" />
+
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Fale conosco, agora mesmo!</h2>
-            <p className="text-xl text-muted-foreground">Preencha o formulário e entraremos em contato</p>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-black">Fale conosco, agora mesmo!</h2>
+            <p className="text-xl text-black/70">Preencha o formulário e entraremos em contato</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6 bg-background p-8 rounded-lg border border-border">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-6 bg-white p-8 rounded-lg border-2 border-[#2341e1]/20 shadow-xl"
+          >
             <div>
               <Label htmlFor="nome">Nome</Label>
               <Input
@@ -173,12 +181,16 @@ export function ContactFormSection() {
                 checked={formData.aceitaTermos}
                 onCheckedChange={(checked) => setFormData({ ...formData, aceitaTermos: checked as boolean })}
               />
-              <Label htmlFor="termos" className="text-sm leading-relaxed cursor-pointer">
+              <Label htmlFor="termos" className="text-sm leading-relaxed cursor-pointer text-black">
                 Declaro que li e concordo com os Termos e Condições de Uso.
               </Label>
             </div>
 
-            <Button type="submit" className="w-full bg-accent hover:bg-accent/90" disabled={isSubmitting}>
+            <Button
+              type="submit"
+              className="w-full bg-[#2341e1] hover:bg-[#2341e1]/90 text-white"
+              disabled={isSubmitting}
+            >
               <Send className="mr-2 h-4 w-4" />
               {isSubmitting ? "Enviando..." : "Enviar Mensagem"}
             </Button>
