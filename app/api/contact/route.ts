@@ -5,15 +5,24 @@ export async function POST(request: Request) {
     const data = await request.json()
 
     const emailContent = `
-      Nome: ${data.nome}
-      Email: ${data.email}
-      Telefone: ${data.telefone}
-      Como chegou até nós: ${data.comoChegou}
-      Nicho específico: ${data.nicho}
-      Mensagem: ${data.mensagem}
+Nova Solicitação de Contato - CodeliumCompany
+
+📋 INFORMAÇÕES DO CLIENTE:
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+👤 Nome: ${data.nome}
+📧 Email: ${data.email}
+📱 Telefone: ${data.telefone}
+🔍 Como nos encontrou: ${data.comoChegou}
+🎯 Nicho: ${data.nicho}
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+💬 MENSAGEM:
+${data.mensagem}
+━━━━━━━━━━━━━━━━━━━━━━━━
     `
 
-    // Using a simple email service API
+    // Using Web3Forms service to send emails
     const emailResponse = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
       headers: {
@@ -22,17 +31,18 @@ export async function POST(request: Request) {
       },
       body: JSON.stringify({
         access_key: process.env.WEB3FORMS_ACCESS_KEY || "",
-        subject: `Novo contato de ${data.nome}`,
+        subject: `🚀 Novo Contato: ${data.nome} - ${data.nicho}`,
         from_name: "CodeliumCompany Website",
-        to_email: "codeliumcompany@gmail.com",
-        message: emailContent,
         email: data.email,
         name: data.nome,
+        message: emailContent,
       }),
     })
 
-    if (!emailResponse.ok) {
-      throw new Error("Erro ao enviar email")
+    const result = await emailResponse.json()
+
+    if (!emailResponse.ok || !result.success) {
+      throw new Error(result.message || "Erro ao enviar email")
     }
 
     return NextResponse.json({ success: true, message: "Mensagem enviada com sucesso!" })
