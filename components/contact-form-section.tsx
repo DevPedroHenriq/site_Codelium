@@ -53,17 +53,44 @@ export function ContactFormSection() {
     setIsSubmitting(true)
 
     try {
-      const response = await fetch("/api/contact", {
+      const emailContent = `
+Nova Solicitação de Contato - CodeliumCompany
+
+📋 INFORMAÇÕES DO CLIENTE:
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+👤 Nome: ${formData.nome}
+📧 Email: ${formData.email}
+📱 Telefone: ${formData.telefone}
+🔍 Como nos encontrou: ${formData.comoChegou}
+🎯 Nicho: ${formData.nicho}
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+💬 MENSAGEM:
+${formData.mensagem}
+━━━━━━━━━━━━━━━━━━━━━━━━
+      `
+
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Accept: "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          access_key: "6694c9e1-643f-4495-8fdb-8e4e93d8c482",
+          subject: `🚀 Novo Contato: ${formData.nome} - ${formData.nicho}`,
+          from_name: "CodeliumCompany Website",
+          to: "codeliumcompany@gmail.com",
+          email: formData.email,
+          name: formData.nome,
+          message: emailContent,
+        }),
       })
 
       const result = await response.json()
 
-      if (response.ok) {
+      if (result.success) {
         alert("Mensagem enviada com sucesso! Entraremos em contato em breve.")
         setFormData({
           nome: "",
@@ -75,7 +102,7 @@ export function ContactFormSection() {
           aceitaTermos: false,
         })
       } else {
-        alert(result.message || "Erro ao enviar mensagem. Tente novamente.")
+        alert("Erro ao enviar mensagem. Por favor, tente novamente ou entre em contato pelo WhatsApp.")
       }
     } catch (error) {
       console.error("Erro:", error)
@@ -104,7 +131,9 @@ export function ContactFormSection() {
             className="space-y-6 bg-white p-8 rounded-lg border-2 border-[#2341e1]/20 shadow-xl"
           >
             <div>
-              <Label htmlFor="nome">Nome</Label>
+              <Label htmlFor="nome" className="text-black font-medium">
+                Nome
+              </Label>
               <Input
                 id="nome"
                 type="text"
@@ -112,11 +141,14 @@ export function ContactFormSection() {
                 value={formData.nome}
                 onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
                 required
+                className="text-black placeholder:text-gray-500 bg-white border-gray-300"
               />
             </div>
 
             <div>
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email" className="text-black font-medium">
+                Email
+              </Label>
               <Input
                 id="email"
                 type="email"
@@ -124,11 +156,14 @@ export function ContactFormSection() {
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 required
+                className="text-black placeholder:text-gray-500 bg-white border-gray-300"
               />
             </div>
 
             <div>
-              <Label htmlFor="telefone">Telefone</Label>
+              <Label htmlFor="telefone" className="text-black font-medium">
+                Telefone
+              </Label>
               <Input
                 id="telefone"
                 type="tel"
@@ -136,11 +171,14 @@ export function ContactFormSection() {
                 value={formData.telefone}
                 onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
                 required
+                className="text-black placeholder:text-gray-500 bg-white border-gray-300"
               />
             </div>
 
             <div>
-              <Label htmlFor="comoChegou">Como chegou até nós</Label>
+              <Label htmlFor="comoChegou" className="text-black font-medium">
+                Como chegou até nós
+              </Label>
               <Input
                 id="comoChegou"
                 type="text"
@@ -148,11 +186,14 @@ export function ContactFormSection() {
                 value={formData.comoChegou}
                 onChange={(e) => setFormData({ ...formData, comoChegou: e.target.value })}
                 required
+                className="text-black placeholder:text-gray-500 bg-white border-gray-300"
               />
             </div>
 
             <div>
-              <Label htmlFor="nicho">Nicho específico</Label>
+              <Label htmlFor="nicho" className="text-black font-medium">
+                Nicho específico
+              </Label>
               <Input
                 id="nicho"
                 type="text"
@@ -160,11 +201,14 @@ export function ContactFormSection() {
                 value={formData.nicho}
                 onChange={(e) => setFormData({ ...formData, nicho: e.target.value })}
                 required
+                className="text-black placeholder:text-gray-500 bg-white border-gray-300"
               />
             </div>
 
             <div>
-              <Label htmlFor="mensagem">Digite sua mensagem</Label>
+              <Label htmlFor="mensagem" className="text-black font-medium">
+                Digite sua mensagem
+              </Label>
               <Textarea
                 id="mensagem"
                 placeholder="Conte-nos sobre seu projeto..."
@@ -172,6 +216,7 @@ export function ContactFormSection() {
                 value={formData.mensagem}
                 onChange={(e) => setFormData({ ...formData, mensagem: e.target.value })}
                 required
+                className="text-black placeholder:text-gray-500 bg-white border-gray-300"
               />
             </div>
 
