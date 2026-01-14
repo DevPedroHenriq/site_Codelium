@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin } from "lucide-react"
+import { Mail, Phone, MapPin, Instagram, Linkedin } from "lucide-react"
 
 export function Footer() {
   return (
@@ -58,7 +58,6 @@ export function Footer() {
                   Depoimentos
                 </a>
               </li>
-             
             </ul>
           </div>
 
@@ -73,11 +72,9 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-accent" />
-                <a href="tel:+5521967763070" className="hover:text-accent transition-colors">
+                <a href="tel:+5522999067522" className="hover:text-accent transition-colors">
                   +55 22 99906-7522
                 </a>
-                
-            
               </li>
               <li className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-accent" />
@@ -86,11 +83,18 @@ export function Footer() {
             </ul>
 
             <div className="flex gap-4 mt-6">
-            
-              <a href="https://www.instagram.com/codeliumcompany/" className="text-muted-foreground hover:text-accent transition-colors" aria-label="Instagram">
+              <a
+                href="https://www.instagram.com/codeliumcompany/"
+                className="text-muted-foreground hover:text-accent transition-colors"
+                aria-label="Instagram"
+              >
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="linkedin.com/company/codeliumcompany" className="text-muted-foreground hover:text-accent transition-colors" aria-label="LinkedIn">
+              <a
+                href="linkedin.com/company/codeliumcompany"
+                className="text-muted-foreground hover:text-accent transition-colors"
+                aria-label="LinkedIn"
+              >
                 <Linkedin className="h-5 w-5" />
               </a>
             </div>

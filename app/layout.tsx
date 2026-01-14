@@ -11,7 +11,12 @@ export const metadata: Metadata = {
   title: "CodeliumCompany - Transformando Ideias em Soluções Digitais",
   description:
     "Empresa de tecnologia especializada em desenvolvimento web, sistemas personalizados e automação com n8n.",
-  generator: "v0.app",
+  generator: "Site_Codelium_",
+  icons: {
+    icon: "/codelium-logo.jpg",
+    shortcut: "/codelium-logo.jpg",
+    apple: "/codelium-logo.jpg",
+  },
 }
 
 export default function RootLayout({
