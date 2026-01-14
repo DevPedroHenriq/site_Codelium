@@ -27,7 +27,7 @@ export function HeroSection() {
   }, [])
 
   const handleWhatsAppClick = () => {
-    const phoneNumber = "+5521967763070"
+    const phoneNumber = "+5522999067522"
     const message = "Olá! Gostaria de começar um projeto."
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
     window.open(url, "_blank")
