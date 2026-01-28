@@ -4,9 +4,22 @@ import { useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Sparkles } from "lucide-react"
 
+type Dot = {
+  x: number
+  y: number
+  vx: number
+  vy: number
+  r: number
+}
+
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const rafRef = useRef<number | null>(null)
 
+  /* ============================
+     FADE-IN OBSERVER (SEU)
+  ============================ */
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -26,6 +39,93 @@ export function HeroSection() {
     return () => observer.disconnect()
   }, [])
 
+  /* ============================
+     FUNDO ANIMADO (NOVO)
+  ============================ */
+  useEffect(() => {
+    const canvas = canvasRef.current
+    const section = sectionRef.current
+    if (!canvas || !section) return
+
+    const ctx = canvas.getContext("2d")
+    if (!ctx) return
+
+    const resize = () => {
+      const rect = section.getBoundingClientRect()
+      const dpr = window.devicePixelRatio || 1
+
+      canvas.width = rect.width * dpr
+      canvas.height = rect.height * dpr
+      canvas.style.width = `${rect.width}px`
+      canvas.style.height = `${rect.height}px`
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+    }
+
+    resize()
+    window.addEventListener("resize", resize)
+
+    const DOTS = 55
+    const MAX_DIST = 160
+    const SPEED = 0.25
+
+    let dots: Dot[] = Array.from({ length: DOTS }).map(() => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * SPEED,
+      vy: (Math.random() - 0.5) * SPEED,
+      r: 1.2 + Math.random() * 1.6,
+    }))
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+      for (const d of dots) {
+        d.x += d.vx
+        d.y += d.vy
+
+        if (d.x <= 0 || d.x >= canvas.width) d.vx *= -1
+        if (d.y <= 0 || d.y >= canvas.height) d.vy *= -1
+
+        ctx.beginPath()
+        ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2)
+        ctx.fillStyle = "rgba(255,255,255,0.55)"
+        ctx.fill()
+      }
+
+      for (let i = 0; i < dots.length; i++) {
+        for (let j = i + 1; j < dots.length; j++) {
+          const a = dots[i]
+          const b = dots[j]
+          const dx = a.x - b.x
+          const dy = a.y - b.y
+          const dist = Math.sqrt(dx * dx + dy * dy)
+
+          if (dist < MAX_DIST) {
+            const alpha = 1 - dist / MAX_DIST
+            ctx.beginPath()
+            ctx.moveTo(a.x, a.y)
+            ctx.lineTo(b.x, b.y)
+            ctx.strokeStyle = `rgba(255,255,255,${0.12 * alpha})`
+            ctx.lineWidth = 1
+            ctx.stroke()
+          }
+        }
+      }
+
+      rafRef.current = requestAnimationFrame(animate)
+    }
+
+    animate()
+
+    return () => {
+      window.removeEventListener("resize", resize)
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
+    }
+  }, [])
+
+  /* ============================
+     HANDLERS (SEUS)
+  ============================ */
   const handleWhatsAppClick = () => {
     const phoneNumber = "+5522999067522"
     const message = "Olá! Gostaria de começar um projeto."
@@ -47,25 +147,18 @@ export function HeroSection() {
       className="relative min-h-screen flex items-center pt-20 overflow-hidden"
       style={{ backgroundColor: "oklch(0.6899 0.313214 264.052)" }}
     >
-      <div className="absolute top-20 left-10 w-72 h-72 border border-white/20 rounded-full" />
-      <div className="absolute top-32 left-20 w-48 h-48 border border-white/10 rounded-full" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
-      <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-black/10 rounded-full blur-2xl" />
+      {/* FUNDO ANIMADO */}
+      <canvas ref={canvasRef} className="absolute inset-0" />
 
-      <div className="absolute top-40 left-0 w-40 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-      <div className="absolute top-60 left-10 w-60 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-      <div className="absolute bottom-40 right-0 w-52 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-
-      <div className="absolute top-32 right-1/3 w-2 h-2 bg-white/40 rounded-full" />
-      <div className="absolute top-48 left-1/3 w-3 h-3 bg-white/30 rounded-full" />
-      <div className="absolute bottom-32 left-1/4 w-2 h-2 bg-white/50 rounded-full" />
-
+      {/* CONTEÚDO (INALTERADO) */}
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
               <Sparkles className="w-4 h-4 text-white" />
-              <span className="text-sm text-white font-medium">Soluções Digitais Inovadoras</span>
+              <span className="text-sm text-white font-medium">
+                Soluções Digitais Inovadoras
+              </span>
             </div>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-balance text-white">
@@ -77,8 +170,8 @@ export function HeroSection() {
             </h1>
 
             <p className="text-lg md:text-xl text-white/80 leading-relaxed max-w-xl">
-              Somos uma empresa de tecnologia especializada em criar sites, sistemas e automações que impulsionam o
-              crescimento do seu negócio.
+              Somos uma empresa de tecnologia especializada em criar sites,
+              sistemas e automações que impulsionam o crescimento do seu negócio.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
@@ -90,6 +183,7 @@ export function HeroSection() {
                 Começar Projeto
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
+
               <Button
                 onClick={handlePortfolioClick}
                 size="lg"
@@ -117,18 +211,11 @@ export function HeroSection() {
           </div>
 
           <div className="relative hidden lg:block">
-            <div className="relative">
-              <img
-                src="/images/chatgpt-20image-2013-20de-20jan.png"
-                alt="MacBook com código CodeliumCompany"
-                className="w-full h-auto drop-shadow-2xl"
-              />
-            </div>
-
-            {/* Floating decorative elements */}
-            <div className="absolute -top-8 -right-8 w-20 h-20 border-2 border-white/20 rounded-full" />
-            <div className="absolute -bottom-4 -left-8 w-16 h-16 bg-white/10 rounded-lg rotate-12" />
-            <div className="absolute top-1/2 -right-12 w-4 h-4 bg-white/40 rounded-full" />
+            <img
+              src="/images/chatgpt-20image-2013-20de-20jan.png"
+              alt="MacBook com código CodeliumCompany"
+              className="w-[120%] h-auto drop-shadow-2xl"
+            />
           </div>
         </div>
       </div>
