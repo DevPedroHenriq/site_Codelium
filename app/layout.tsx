@@ -18,28 +18,7 @@ export const metadata: Metadata = {
     apple: "/codelium-logo.jpg",
   },
 }
-robots: {
-    index: true,
-    follow: true,
-    
-    googleBot: {
-      index: true,
-      follow: true,
-      maxSnippet: -1,
-      maxImagePreview: "large",
-      maxVideoPreview: -1,
-    },
-  },
- keywords: [
-    "CodeliumCompany",
-    "desenvolvimento de sistemas",
-    "sistemas web",
-    "software sob medida",
-    "automação",
-    "tecnologia",
-    "performance",
-    "segurança",
-  ],
+
 
 export default function RootLayout({
   children,
