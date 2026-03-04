@@ -7,7 +7,7 @@ const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Codelium Health - Automação e Captação para Clínicas",
+  title: "Codelium  - Automação e Captação para Clínicas",
   description:
     "Automação de atendimento, agendamentos e captação de pacientes para clínicas odontológicas e da saúde.",
   generator: "Site_Codelium_",
