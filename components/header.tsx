@@ -39,9 +39,9 @@ export function Header() {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Image src="/images/codelium-logo.jpeg" alt="Codelium Company" width={50} height={50} className="rounded" />
+            <Image src="/images/codelium-logo.jpeg" alt="Codelium Health" width={50} height={50} className="rounded" />
             <div className="text-2xl font-bold">
-              Codelium<span className="text-accent">Company</span>
+              Codelium<span className="text-accent">Health</span>
             </div>
           </div>
 

@@ -7,10 +7,10 @@ export function Footer() {
         <div className="grid md:grid-cols-4 gap-8">
           <div>
             <h3 className="text-2xl font-bold mb-4">
-              Codelium<span className="text-accent">Company</span>
+              Codelium<span className="text-accent">Health</span>
             </h3>
             <p className="text-muted-foreground leading-relaxed">
-              Transformando ideias em soluções digitais inovadoras desde 2020.
+              Automação e captação de pacientes para clínicas odontológicas e da saúde.
             </p>
           </div>
 
@@ -102,7 +102,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-border mt-12 pt-8 text-center text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} CodeliumCompany. Todos os direitos reservados.</p>
+          <p>&copy; {new Date().getFullYear()} Codelium Health. Todos os direitos reservados.</p>
         </div>
       </div>
     </footer>
