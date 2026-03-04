@@ -7,7 +7,7 @@ export function Footer() {
         <div className="grid md:grid-cols-4 gap-8">
           <div>
             <h3 className="text-2xl font-bold mb-4">
-              Codelium<span className="text-accent">Health</span>
+              Codelium<span className="text-accent">company</span>
             </h3>
             <p className="text-muted-foreground leading-relaxed">
               Automação e captação de pacientes para clínicas odontológicas e da saúde.
