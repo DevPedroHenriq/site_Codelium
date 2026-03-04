@@ -41,7 +41,7 @@ export function Header() {
           <div className="flex items-center gap-3">
             <Image src="/images/codelium-logo.jpeg" alt="Codelium Health" width={50} height={50} className="rounded" />
             <div className="text-2xl font-bold">
-              Codelium<span className="text-accent">Health</span>
+              Codelium
             </div>
           </div>
 
